@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import BookingButton from '../components/BookingButton';
 
 const MainLayout = ({ children }) => {
   return (
@@ -10,6 +11,7 @@ const MainLayout = ({ children }) => {
         {children}
       </main>
       <Footer />
+      <BookingButton />
     </div>
   );
 };
