@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Menu, X, ChevronDown, Search, User } from "lucide-react";
 import { Link } from "react-router-dom";
+import AuthModal from "./AuthModal";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,10 +11,22 @@ const Header = () => {
   const [panelVisible, setPanelVisible] = useState(false);
   const [showBg, setShowBg] = useState(true);
   const [searchExpanded, setSearchExpanded] = useState(false);
-
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
   const initialTimerRef = useRef(null);
   const scrollTimerRef = useRef(null);
   const searchInputRef = useRef(null);
+
+  const handleSignOut = () => {
+    localStorage.removeItem("dream2flyUser");
+    setUser(null);
+    navigate("/"); // redirect to home page
+  };
+
+  const [user, setUser] = useState(() => {
+    const savedUser = localStorage.getItem("dream2flyUser");
+    return savedUser ? JSON.parse(savedUser) : null;
+  });
 
   // Handle delayed transparency after load
   useEffect(() => {
@@ -119,17 +133,21 @@ const Header = () => {
     <>
       <header
         className={`fixed top-0 left-0 w-full z-50 transition-colors duration-500 ${
-          showBg ? "bg-gradient-to-r from-orange-400 to-sky-400" : "bg-transparent"
+          showBg
+            ? "bg-gradient-to-r from-orange-400 to-sky-400"
+            : "bg-transparent"
         }`}
       >
         <div className="mx-auto px-8 py-4 flex justify-between items-center">
-          {/* Logo */}
-          <div className="text-2xl font-extrabold text-white">
-            Dream<span className="text-red-500">2</span>Fly
+          {/* Left: Logo - 30% */}
+          <div className="w-1/3">
+            <div className="text-2xl font-extrabold text-white">
+              Dream<span className="text-red-500">2</span>Fly
+            </div>
           </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8 text-white font-medium text-xl relative">
+          {/* Center: Navigation - 40% */}
+          <div className="w-2/5 hidden md:flex justify-center space-x-8 text-white font-medium text-xl relative">
             <button
               onClick={toggleDestinations}
               className="hover:text-red-300 transition focus:outline-none flex items-center gap-1"
@@ -149,11 +167,11 @@ const Header = () => {
             <Link to="/plan" className="hover:text-red-300 transition">
               Plan Your Trip
             </Link>
-          </nav>
+          </div>
 
-          {/* Right - Search + User + Mobile Menu */}
-          <div className="flex items-center space-x-4 relative">
-            {/* Search Icon or Input */}
+          {/* Right: Search + User - 30% */}
+          <div className="w-1/3 flex items-center justify-end space-x-4 relative">
+            {/* Search */}
             {!searchExpanded && (
               <button
                 onClick={() => setSearchExpanded(true)}
@@ -163,7 +181,6 @@ const Header = () => {
                 <Search size={24} />
               </button>
             )}
-
             {searchExpanded && (
               <input
                 ref={searchInputRef}
@@ -173,14 +190,46 @@ const Header = () => {
               />
             )}
 
-            {/* User icon linking to login/register */}
-            <Link
-              to="/login"
-              className="text-white hover:text-red-300 focus:outline-none"
+            {/* Show full name before icon if user is logged in */}
+            {user && (
+              <div className="relative group ml-4">
+                <span className="text-white font-bold hidden sm:inline-block truncate max-w-[120px] cursor-pointer">
+                  {`Hello, ${user.name.firstname} ${user.name.lastname}`}
+                </span>
+
+                <button
+                  onClick={handleSignOut}
+                  className="absolute top-full mt-1 right-0 opacity-0 group-hover:opacity-100 bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded shadow text-sm transition-opacity duration-200"
+                >
+                  <div className="flex items-center gap-1">
+                    <svg
+                      className="w-4 h-4 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1"
+                      />
+                    </svg>
+                    <span>Sign Out</span>
+                  </div>
+                </button>
+              </div>
+            )}
+
+            {/* User icon */}
+            <button
+              onClick={() => setShowModal(true)}
+              className="text-white hover:text-red-500 m-1"
               aria-label="Login or Register"
             >
-              <User size={24} />
-            </Link>
+              <User size={30} />
+            </button>
 
             {/* Mobile menu toggle */}
             <button onClick={toggleMenu} className="md:hidden text-white">
@@ -294,7 +343,7 @@ const Header = () => {
           </div>
           <div className="mt-6 text-right">
             <button
-              onClick={() => setDestinationsOpen(false)}
+              onClick={() => setShowModal(true)}
               className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition"
             >
               Close
@@ -302,6 +351,13 @@ const Header = () => {
           </div>
         </div>
       )}
+
+      {/* Modal */}
+      <AuthModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        onLoginSuccess={(user) => setUser(user)} // <- this is key
+      />
     </>
   );
 };

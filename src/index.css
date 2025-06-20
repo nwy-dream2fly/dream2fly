@@ -38,6 +38,26 @@ main {
   margin-right: 0 !important;
 }
 
+.flight-input {
+  @apply p-3 border border-orange-950 bg-white/50 text-black rounded text-lg min-w-[246px] focus:outline-none focus:ring-2 focus:ring-white;
+}
+
+.btn-red {
+  @apply bg-gradient-to-r from-red-600 to-red-500 text-white font-bold px-8 py-3 rounded-full hover:from-red-700 hover:to-red-600 shadow-lg;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+
+
 
 
 
