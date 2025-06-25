@@ -1,0 +1,27 @@
+[
+  {
+    "title": "Nepal",
+    "image": ".",
+    "listing": 18
+  },
+  {
+    "title": "Thailand",
+    "image": "/images/thailand.jpg",
+    "listing": 27
+  },
+  {
+    "title": "Maldives",
+    "image": "/images/maldives.jpg",
+    "listing": 22
+  },
+  {
+    "title": "Bali",
+    "image": "/images/bali.jpg",
+    "listing": 15
+  },
+  {
+    "title": "Singapore",
+    "image": "/images/singapore.jpg",
+    "listing": 11
+  }
+]

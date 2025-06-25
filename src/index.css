@@ -18,9 +18,7 @@ html, body, main {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -39,7 +37,11 @@ main {
 }
 
 .flight-input {
-  @apply p-3 border border-orange-950 bg-white/50 text-black rounded text-lg min-w-[246px] focus:outline-none focus:ring-2 focus:ring-white;
+  @apply p-3 border border-orange-950 bg-white text-black rounded text-lg min-w-[246px] focus:outline-none focus:ring-2 focus:ring-white;
+}
+
+.flight-input-1 {
+  @apply p-4 border bg-white text-black rounded text-lg min-w-[246px] focus:outline-none focus:ring-2 focus:ring-white;
 }
 
 .btn-red {
@@ -56,9 +58,49 @@ html {
   perspective: 1000px;
 }
 
+/* ✈️ Plane flying diagonally */
+@keyframes fly-across {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(100vw, -100vh) rotate(20deg);
+    opacity: 0;
+  }
+}
+
+.animate-float-plane {
+  position: absolute;
+  left: -100px; /* start a bit outside the left */
+  animation: fly-across 10s linear infinite;
+}
 
 
+/* 🔵 Bubble float animation */
+@keyframes floatBubble {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) scale(1.2);
+    opacity: 0;
+  }
+}
 
+.animate-float-bubble-1 {
+  animation: floatBubble 6s ease-in-out infinite;
+}
+.animate-float-bubble-2 {
+  animation: floatBubble 7s linear infinite;
+}
+.animate-float-bubble-3 {
+  animation: floatBubble 5s ease-in infinite;
+}
+.animate-float-bubble-4 {
+  animation: floatBubble 8s ease-out infinite;
+}
 
 
 

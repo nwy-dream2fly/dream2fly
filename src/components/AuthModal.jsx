@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import backgroundImage from "../assets/images/login.jpg";
 import { toast } from "react-toastify";
+import { useAuth } from "../context/AuthContext";
 
+export default function AuthModal({ isOpen, onClose }) {
+  const { setUser } = useAuth();  // <-- get setUser from context
 
-export default function AuthModal({ isOpen, onClose, onLoginSuccess }) {
   const [isSignup, setIsSignup] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -12,15 +14,10 @@ export default function AuthModal({ isOpen, onClose, onLoginSuccess }) {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [message] = useState("");
 
-  // Lock scroll on modal open
   useEffect(() => {
-    if (isOpen) {
-      document.body.classList.add("overflow-hidden");
-    } else {
-      document.body.classList.remove("overflow-hidden");
-    }
+    if (isOpen) document.body.classList.add("overflow-hidden");
+    else document.body.classList.remove("overflow-hidden");
     return () => document.body.classList.remove("overflow-hidden");
   }, [isOpen]);
 
@@ -28,36 +25,28 @@ export default function AuthModal({ isOpen, onClose, onLoginSuccess }) {
     e.preventDefault();
 
     if (isSignup) {
-      // Validate fields
       if (password !== confirmPassword) {
         toast.warning("Passwords do not match");
         return;
       }
 
-      // FakeStore Signup API
       try {
         const res = await axios.post("https://fakestoreapi.com/users", {
           email,
           username,
           password,
-          name: {
-            firstname: "First",
-            lastname: "Last",
-          },
+          name: { firstname: "First", lastname: "Last" },
           address: {
             city: "City",
             street: "Street",
             number: 123,
             zipcode: "12345-6789",
-            geolocation: {
-              lat: "0",
-              long: "0",
-            },
+            geolocation: { lat: "0", long: "0" },
           },
           phone: "123-456-7890",
         });
 
-        toast.success(`Signup success! ID: ${res.data.id}`);
+        toast.success("Signup successful!");
         onClose();
         setUsername("");
         setEmail("");
@@ -68,25 +57,39 @@ export default function AuthModal({ isOpen, onClose, onLoginSuccess }) {
         toast.error("Signup failed");
       }
     } else {
-      // Login: Fetch all users and check match
       try {
-        const res = await axios.get("https://fakestoreapi.com/users");
-        const matchedUser = res.data.find(
-          (user) => user.email === email && user.password === password
+        const loginRes = await axios.post(
+          "https://fakestoreapi.com/auth/login",
+          { username, password }
         );
 
-        if (matchedUser) {
-          toast.success(`Login successfully`);
-          localStorage.setItem("dream2flyUser", JSON.stringify(matchedUser));
-          if (onLoginSuccess) {
-            onLoginSuccess(matchedUser);
+        if (loginRes.data?.token) {
+          localStorage.setItem("token", loginRes.data.token);
+
+          const usersRes = await axios.get("https://fakestoreapi.com/users");
+          const matchedUser = usersRes.data.find(
+            (u) => u.username === username
+          );
+
+          if (matchedUser) {
+            localStorage.setItem(
+              "dream2flyUser",
+              JSON.stringify(matchedUser)
+            );
+            toast.success("Login successful!");
+
+            // Updated part: use setUser and close modal
+            setUser(matchedUser);
+            onClose();
+          } else {
+            toast.error("User details not found");
           }
-          onClose(); // Close modal
         } else {
-          toast.error("Invalid username or password");
+          toast.error("Login failed");
         }
       } catch (err) {
-        toast.error("Login failed, please try again");
+        console.error(err);
+        toast.error("Invalid login credentials");
       }
     }
   };
@@ -95,71 +98,61 @@ export default function AuthModal({ isOpen, onClose, onLoginSuccess }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
-      <div className="bg-white rounded-lg shadow-lg flex w-full max-w-6xl max-h-[85vh] overflow-hidden">
-        {/* Left Image Panel */}
-        <div className="hidden lg:block lg:w-1/2">
+      <div className="bg-white rounded-lg shadow-xl flex w-full max-w-6xl max-h-[90vh] overflow-hidden">
+        {/* Left image */}
+        <div className="hidden lg:block w-1/2">
           <img
             src={backgroundImage}
-            alt="heritage"
+            alt="Travel"
             className="h-full w-full object-cover"
           />
         </div>
 
-        {/* Right Form Panel */}
-        <div className="w-full lg:w-1/2 p-10 relative flex flex-col justify-center items-center max-h-[85vh] overflow-y-auto">
+        {/* Right form */}
+        <div className="w-full lg:w-1/2 p-10 relative flex flex-col justify-center max-h-[90vh] overflow-y-auto">
           <button
-            className="absolute top-4 right-4 text-2xl font-bold"
             onClick={onClose}
+            className="absolute top-4 right-4 text-2xl font-bold"
           >
             ×
           </button>
 
-          <h2 className="text-3xl font-bold mb-6 text-center">
+          <h2 className="text-3xl font-bold mb-4 text-center">
             {isSignup ? "Create an account" : "Login"}
           </h2>
 
-          {/* Login / Signup Toggle */}
-          <div className="flex justify-center mb-4">
+          <div className="flex justify-center gap-6 mb-4">
             <button
-              className={`mr-6 font-semibold text-lg ${
+              onClick={() => setIsSignup(true)}
+              className={`font-semibold text-lg ${
                 isSignup ? "text-red-600" : "text-gray-500"
               }`}
-              onClick={() => setIsSignup(true)}
             >
               Signup
             </button>
             <button
+              onClick={() => setIsSignup(false)}
               className={`font-semibold text-lg ${
                 !isSignup ? "text-black" : "text-gray-500"
               }`}
-              onClick={() => setIsSignup(false)}
             >
               Login
             </button>
           </div>
 
-          {message && (
-            <p className="text-sm text-center mb-4 text-red-600">{message}</p>
-          )}
-
-          {/* Form */}
-
-          <form
-            className="grid grid-cols-2 gap-4 w-full"
-            onSubmit={handleSubmit}
-          >
+          <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4 w-full">
             {isSignup ? (
               <>
                 <input
                   type="text"
                   placeholder="First Name*"
-                  className="border p-2 rounded col-span-1"
+                  className="col-span-1 border p-2 rounded"
                   required
                 />
                 <input
                   type="text"
                   placeholder="Last Name*"
-                  className="border p-2 rounded col-span-1"
+                  className="col-span-1 border p-2 rounded"
                   required
                 />
                 <input
@@ -167,7 +160,7 @@ export default function AuthModal({ isOpen, onClose, onLoginSuccess }) {
                   placeholder="Username*"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="border p-2 rounded col-span-2"
+                  className="col-span-2 border p-2 rounded"
                   required
                 />
                 <input
@@ -175,10 +168,10 @@ export default function AuthModal({ isOpen, onClose, onLoginSuccess }) {
                   placeholder="Email*"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="border p-2 rounded col-span-2"
+                  className="col-span-2 border p-2 rounded"
                   required
                 />
-                <div className="relative col-span-2">
+                <div className="col-span-2 relative">
                   <input
                     type={showPassword ? "text" : "password"}
                     placeholder="Password*"
@@ -194,7 +187,7 @@ export default function AuthModal({ isOpen, onClose, onLoginSuccess }) {
                     👁
                   </span>
                 </div>
-                <div className="relative col-span-2">
+                <div className="col-span-2 relative">
                   <input
                     type={showConfirmPassword ? "text" : "password"}
                     placeholder="Confirm Password*"
@@ -210,23 +203,18 @@ export default function AuthModal({ isOpen, onClose, onLoginSuccess }) {
                     👁
                   </span>
                 </div>
-                <select className="border p-2 rounded col-span-2" required>
-                  <option value="">Country*</option>
-                  <option value="India">India</option>
-                  <option value="USA">USA</option>
-                </select>
               </>
             ) : (
               <>
                 <input
-                  type="email"
-                  placeholder="Email*"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="border p-2 rounded col-span-2"
+                  type="text"
+                  placeholder="Username*"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  className="col-span-2 border p-2 rounded"
                   required
                 />
-                <div className="relative col-span-2">
+                <div className="col-span-2 relative">
                   <input
                     type={showPassword ? "text" : "password"}
                     placeholder="Password*"
@@ -245,7 +233,7 @@ export default function AuthModal({ isOpen, onClose, onLoginSuccess }) {
               </>
             )}
 
-            <div className="col-span-2 mt-4 bg-gray-100 rounded text-center py-4 text-sm text-gray-500">
+            <div className="col-span-2 mt-4 text-center text-sm text-gray-500 bg-gray-100 py-3 rounded">
               [reCAPTCHA placeholder]
             </div>
 

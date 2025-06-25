@@ -13,7 +13,7 @@ const PersonSelector = ({ flightForm, setFlightForm, show, setShow }) => {
       <button
         onClick={() => setShow((prev) => !prev)}
         type="button"
-        className="flight-input text-left"
+        className="flight-input-1 text-left p-4 font-semibold text-2xl"
       >
         {total} Person{total > 1 ? "s" : ""}
       </button>
