@@ -9,8 +9,7 @@ const MainLayout = ({ children }) => {
       <Header />
       <main className="flex-grow container mx-auto px-4 py-6">{children}</main>
       <Footer />
-      <BookingButton />
-      
+      <BookingButton />      
     </div>
     
   );

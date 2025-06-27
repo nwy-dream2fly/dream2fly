@@ -10,6 +10,8 @@ import Booking from "./Booking";
 import DestinationCarousel from "../components/DestinationCarousel";
 import Destinations from "./Destinations";
 import PopularPackages from "../components/PopularPackages";
+import AboutUs from "./AboutUs";
+import TourPlan from "./TourPlan";
 
 // Optional: A fallback/placeholder video (e.g., a still background or loop)
 const placeholderVideo = tajmahalVideo;
@@ -148,6 +150,8 @@ const VideoSlider = () => {
       <Destinations />
       <PopularPackages />   
       <DestinationCarousel />
+      <TourPlan />
+      <AboutUs />
       <Booking />
     </>
   );

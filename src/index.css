@@ -21,6 +21,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
 }
 
 code {
@@ -41,7 +42,8 @@ main {
 }
 
 .flight-input-1 {
-  @apply p-4 border bg-white text-black rounded text-lg min-w-[246px] focus:outline-none focus:ring-2 focus:ring-white;
+  
+  @apply border bg-white text-black rounded text-lg min-w-[246px] focus:outline-none focus:ring-2 focus:ring-white;
 }
 
 .btn-red {
@@ -70,25 +72,6 @@ html {
   }
 }
 
-.animate-float-plane {
-  position: absolute;
-  left: -100px; /* start a bit outside the left */
-  animation: fly-across 10s linear infinite;
-}
-
-
-/* 🔵 Bubble float animation */
-@keyframes floatBubble {
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-100vh) scale(1.2);
-    opacity: 0;
-  }
-}
-
 .animate-float-bubble-1 {
   animation: floatBubble 6s ease-in-out infinite;
 }
@@ -101,7 +84,12 @@ html {
 .animate-float-bubble-4 {
   animation: floatBubble 8s ease-out infinite;
 }
-
+@font-face {
+  font-family: 'Mystery Quest';
+  src: url('../src/assets/fonts/MysteryQuest-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 
 

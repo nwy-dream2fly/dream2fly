@@ -1,7 +1,11 @@
 import { useState } from "react";
-import { User } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { HiOutlineLogout } from "react-icons/hi";
+import {
+  UserIcon,
+  CalendarDaysIcon,
+} from "@heroicons/react/24/outline";
 
 export default function UserDropdown({ setShowModal }) {
   const { user, logout } = useAuth();
@@ -19,11 +23,12 @@ export default function UserDropdown({ setShowModal }) {
     return (
       <button
         onClick={() => setShowModal(true)}
-        className="text-white hover:text-orange-400 m-1"
-        aria-label="Login or Register"
+        className="text-white hover:text-red-400 m-1"
+        
       >
-        <User size={30} />
+         <UserIcon className="h-7 w-7" />
       </button>
+      
     );
   }
 
@@ -31,16 +36,17 @@ export default function UserDropdown({ setShowModal }) {
     <div className="relative ml-4">
       <button
         onClick={toggleDropdown}
-        className="flex items-center gap-2 text-xl font-bold text-white hover:text-orange-300 transition-all hover:bg-gray-100"
+        
+        className="flex items-center gap-2 text-xl font-bold text-white hover:text-red-500 transition-all hover:bg-gray-100  p-2 rounded-lg"
       >
-        <User size={25} />
+        <UserIcon className="h-6 w-6" />
         <span className="max-w-[200px] truncate">
           {user.name?.firstname} {user.name?.lastname}
         </span>
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-64 bg-white border border-orange-400 shadow-lg rounded-lg z-50">
+        <div className="absolute right-0 mt-2 w-48 bg-white border border-orange-400 rounded-lg z-50 shadow-2xl">
           <div className="p-4 border-b border-orange-200">
             <div className="text-lg font-semibold text-orange-600">Account</div>
           </div>
@@ -51,8 +57,9 @@ export default function UserDropdown({ setShowModal }) {
                 navigate("/profile");
                 setIsOpen(false);
               }}
-              className="text-left text-orange-600 hover:underline"
+              className="text-left text-orange-600 hover:bg-orange-100 text-lg flex items-center gap-2"
             >
+              <UserIcon className="h-5 w-5" />
               My Profile
             </button>
 
@@ -61,15 +68,17 @@ export default function UserDropdown({ setShowModal }) {
                 navigate("/my-bookings");
                 setIsOpen(false);
               }}
-              className="text-left text-orange-600 hover:underline"
+              className="text-left text-orange-600 hover:bg-orange-100 text-lg flex items-center gap-2"
             >
+              <CalendarDaysIcon className="h-5 w-5" />
               My Bookings
             </button>
 
             <button
               onClick={handleLogout}
-              className="bg-red-500 hover:bg-red-600 text-white rounded px-3 py-1 mt-2"
+              className="bg-orange-400 hover:bg-red-600 text-white rounded px-3 py-1 mt-2 text-lg flex items-center justify-center gap-2 font-semibold"
             >
+              <HiOutlineLogout className="h-6 w-6" />
               Logout
             </button>
           </div>

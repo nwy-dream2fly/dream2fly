@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import destinations from "../data/destinations";
 import bgImage from "../assets/images/background.jpg";
-import PlaneIcon from "../assets/images/shape_4.png";
-import BubbleIcon from "../assets/images/shape_1.png";
-import ArrowIcon from "../assets/images/shape_3.png";
 
 const DestinationCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(2);
@@ -56,10 +53,10 @@ const DestinationCarousel = () => {
 
   return (
     <div
-      className="w-full mx-auto py-10 px-4 relative overflow-visible justify-center bg-cover bg-center z-0 "
+      className="w-full mx-auto py-16 px-4 relative overflow-visible justify-center bg-cover bg-center z-0 "
       style={{ backgroundImage: `url(${bgImage})` }}
     >
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-10 sm:mb-14">
+      <h2 className=" sm:text-2xl md:text-6xl font-bold text-center mb-10 sm:mb-14 text-3xl text-teal-500 font-mystery">
         Popular Destination
       </h2>
 
@@ -145,38 +142,7 @@ const DestinationCarousel = () => {
             ▶
           </button>
         </div>
-      <div className="absolute bottom-0 left-0 w-full h-screen pointer-events-none z-30">
-        {/* ✈️ Plane flying across the screen */}
-        <img
-          src={PlaneIcon}
-          alt="plane"
-          className="w-10 h-10 animate-float-plane absolute bottom-0 left-0"
-        />
-
-        {/* 🔵 Left-side Bubbles */}
-        <img
-          src={BubbleIcon}
-          alt="bubble"
-          className="w-4 h-4 animate-float-bubble-1 absolute bottom-0 left-[5%]"
-        />
-        <img
-          src={BubbleIcon}
-          alt="bubble"
-          className="w-5 h-5 animate-float-bubble-2 absolute bottom-0 left-[15%]"
-        />
-
-        {/* 🔵 Right-side Bubbles */}
-        <img
-          src={BubbleIcon}
-          alt="bubble"
-          className="w-10 h-15 animate-float-bubble-3 absolute bottom-0 right-[15%]"
-        />
-        <img
-          src={ArrowIcon}
-          alt="bubble"
-          className="w-4 h-4 animate-float-bubble-4 absolute bottom-0 right-[5%]"
-        />
-      </div>
+    
     </div>
   );
 };

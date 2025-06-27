@@ -13,12 +13,17 @@ import Hotels from "../pages/Hotels";
 import Contact from "../pages/Contact";
 import NotFound from "../pages/NotFound";
 import AuthModal from "../components/auth/AuthModal";
-import ProfilePage from '../pages/ProfilePage'
+import ProfilePage from "../pages/ProfilePage";
+import ScrollToTop from "../components/Common/ScrollToTop";
+import FlightSearchPage from '../pages/FlightSearchPage'
+import AboutUs from '../pages/AboutUs'
+import TourPlan from "../pages/TourPlan";
 
 const AppRoutes = () => {
   return (
     <Router>
       <MainLayout>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/flight-results" element={<FlightResults />} />
@@ -26,15 +31,19 @@ const AppRoutes = () => {
           <Route path="/booking" element={<Booking />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/profile" element={<ProfilePage />} />
-           <Route path="/my-bookings" element={<ProfilePage />} />
-           <Route path="/auth" element={<AuthModal/>} />
+          <Route path="/profile" element={<ProfilePage tab="profile" />} />
+          <Route path="/my-bookings" element={<ProfilePage tab="bookings" />} />
+          <Route path="/notifications" element={<ProfilePage tab="notifications" />}/>
+          <Route path="/flights/search" element={<FlightSearchPage />} />
+          <Route path="/auth" element={<AuthModal />} />
           <Route path="/destinations" element={<Destinations />} />
           <Route path="/destinations/:slug" element={<DestinationDetails />} />
+          <Route path="/about-us" element={<AboutUs />} />
           <Route path="/flights" element={<Flights />} />
           <Route path="/hotels" element={<Hotels />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/tourpaln" element= {<TourPlan/>} />
         </Routes>
       </MainLayout>
     </Router>

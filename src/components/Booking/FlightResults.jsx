@@ -6,7 +6,7 @@ const FlightResults = ({ flights }) => {
   }
 
   return (
-    <div className="mt-8 max-h-[80vh] overflow-y-auto space-y-6 pr-2">
+    <div className="mt-8 space-y-6 pr-2">
       {flights.map((flight) => (
         <div
           key={flight.id}
