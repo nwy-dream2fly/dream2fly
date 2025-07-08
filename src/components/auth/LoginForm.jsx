@@ -35,20 +35,24 @@ export default function LoginForm({ onClose }) {
     <form onSubmit={handleLogin} className="grid grid-cols-2 gap-4 w-full">
       <input type="text" placeholder="Username*" value={username} onChange={e => setUsername(e.target.value)} className="col-span-2 border p-2 rounded" required />
       <div className="col-span-2 relative">
-         <input
-        type={showPassword ? "text" : "password"}
-        placeholder="Password*"
-        value={password}
-        onChange={e => setPassword(e.target.value)}
-        className="border p-2 rounded w-full"
-        required
-      />
-      <span
-        className="absolute top-3 right-4 cursor-pointer h-10 w-10"
-        onClick={() => setShowPassword(!showPassword)}
-      >
-        {showPassword ? <HiEyeOff /> : <HiEye />}
-      </span>
+        
+        <input
+          type={showPassword ? "text" : "password"}
+          placeholder="Password*"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+          className="border p-2 rounded w-full"
+          required
+        />
+        <span
+          className="absolute top-3 right-4 cursor-pointer h-10 w-10"
+          onClick={() => setShowPassword(!showPassword)}
+        >
+          {showPassword ? <HiEyeOff /> : <HiEye />}
+        </span>
+        <div class="text-base mt-1">
+            <a href="#" class="font-semibold text-gray-300 hover:text-white">Forgot password?</a>
+          </div>
       </div>
       <button type="submit" className="col-span-2 mt-4 bg-red-600 text-white rounded-full py-2 text-xl hover:bg-red-700">Login</button>
     </form>

@@ -46,9 +46,9 @@ export default function UserDropdown({ setShowModal }) {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-white border border-orange-400 rounded-lg z-50 shadow-2xl">
-          <div className="p-4 border-b border-orange-200">
-            <div className="text-lg font-semibold text-orange-600">Account</div>
+        <div className="absolute right-0 mt-2 w-48 bg-sky-100 border border-teal-200 rounded-lg z-50 shadow-2xl">
+          <div className="p-4 border-b border-teal-200">
+            <div className="text-lg font-semibold text-teal-600">Account</div>
           </div>
 
           <div className="p-3 flex flex-col gap-2 text-sm">
@@ -57,7 +57,7 @@ export default function UserDropdown({ setShowModal }) {
                 navigate("/profile");
                 setIsOpen(false);
               }}
-              className="text-left text-orange-600 hover:bg-orange-100 text-lg flex items-center gap-2"
+              className="text-left text-teal-600 hover:bg-teal-200 text-lg flex items-center gap-2"
             >
               <UserIcon className="h-5 w-5" />
               My Profile
@@ -68,7 +68,7 @@ export default function UserDropdown({ setShowModal }) {
                 navigate("/my-bookings");
                 setIsOpen(false);
               }}
-              className="text-left text-orange-600 hover:bg-orange-100 text-lg flex items-center gap-2"
+              className="text-left text-teal-600 hover:bg-teal-200 text-lg flex items-center gap-2"
             >
               <CalendarDaysIcon className="h-5 w-5" />
               My Bookings

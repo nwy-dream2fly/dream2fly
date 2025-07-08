@@ -75,15 +75,24 @@ export default function Destinations() {
             <SwiperSlide key={index}>
               <div
                 className="relative w-full h-full bg-cover bg-center"
-                style={{ backgroundImage: `url(${destination.image})` }}
+                style={{
+                  backgroundImage: `url(${destination.image})`
+                }}
               >
-                <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-                <div className="absolute top-[10%] left-1/2 transform -translate-x-1/2 text-center">
-                  <h1 className="text-white text-4xl md:text-7xl lg:text-9xl font-bold uppercase">
-                    Destinations
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background: 'linear-gradient(to bottom, rgba(0,0,0,0.80) 10%, rgba(0,0,0,0) 100%)'
+                  }}
+                ></div>
+
+
+                <div className="absolute top-[10%] left-1/2 transform -translate-x-1/2 text-center w-full">
+                  <h1 className="text-white primary-header">
+                    Dream Getaways
                   </h1>
-                  <p className="text-white text-base md:text-xl mt-2 md:mt-4">
-                    for every bucket list
+                  <p className="text-white text-2xl font-medium mt-3">
+                    Top Travel Goals
                   </p>
                   <div className="mt-40">
                     <h2 className="text-white text-2xl md:text-4xl font-bold">
@@ -91,7 +100,7 @@ export default function Destinations() {
                     </h2>
                     <Link
                       to={`/destinations/${destination.name.toLowerCase()}`}
-                      className="mt-4 inline-block px-5 py-2 md:px-6 md:py-3 bg-red-600 text-white rounded-full text-sm md:text-lg hover:bg-red-700 transition-all"
+                      className="btn-primary mt-6 inline-block text-center"
                     >
                       Discover more
                     </Link>

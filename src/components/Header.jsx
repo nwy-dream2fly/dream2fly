@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Menu, X, ChevronDown, Search } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthModal from "../components/auth/AuthModal";
-import BlueLogo from "../assets/images/dream2fly logo horizontal (blue).png";
+import BlueLogo from "../assets/images/dream2fly logo horizontal (white).png";
 import bgDestination from "../assets/images/bg-full.jpg";
 import { useAuth } from "../context/AuthContext";
 import UserDropdown from "../components/Common/UserDropdown";
@@ -125,27 +125,27 @@ const Header = () => {
       <header
         className={`fixed top-0 left-0 w-full z-50 transition-colors duration-[15000ms] ${
           showBg
-            ? "bg-gradient-to-r from-orange-400 to-sky-400"
+            ? "bg-blue-600"
             : "bg-transparent"
         }`}
       >
-        <div className="mx-auto px-8 py-3 flex justify-between items-center">
+        <div className="mx-0 sm:mx-auto px-4 sm:px-8 py-3 flex justify-between items-center">
           {/* Logo */}
           <div className="w-1/3">
             <img
               src={BlueLogo}
               alt="Dream2Fly Logo"
-              className="h-8 w-auto ml-2"
+              className="h-5 sm:h-6 ml-0 sm:ml-2 sm:m-0 w-auto"
             />
           </div>
 
           {/* Nav Center */}
-          <div className="w-2/5 hidden md:flex justify-center space-x-8 text-white font-medium text-xl relative">
+          <div className="w-3/5 hidden md:flex justify-center space-x-8 text-white font-medium text-base relative">
             <Link to="/home" className="hover:text-red-300 transition">Home</Link>
 
             <button
               onClick={toggleDestinations}
-              className="hover:text-red-300 text-xl transition flex items-center gap-1 font-medium"
+              className="hover:text-red-300 transition flex items-center gap-1 font-medium"
             >
               Destinations
               <ChevronDown
@@ -159,6 +159,7 @@ const Header = () => {
 
             <Link to="/experiences" className="hover:text-red-300 transition">Experiences</Link>
             <Link to="/plan" className="hover:text-red-300 transition">Plan Your Trip</Link>
+            <Link to="/businesstrip" className="hover:text-red-300 transition">Business Trip</Link>
           </div>
 
           {/* Right: Search & User */}

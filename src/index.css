@@ -4,11 +4,19 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'poppins';
+  src: url('../src/assets/fonts/Poppins-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html, body, main {
   margin: 0 !important;
   padding: 0 !important;
   height: 100%;
   width: 100%;
+  font-family: 'Poppins', sans-serif !important;
   
 }
 
@@ -18,16 +26,16 @@ html, body, main {
 
 body {
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   
 }
 
-code {
+/* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
+} */
 
 main {
   max-width: 100% !important;
@@ -43,7 +51,7 @@ main {
 
 .flight-input-1 {
   
-  @apply border bg-white text-black rounded text-lg min-w-[246px] focus:outline-none focus:ring-2 focus:ring-white;
+  @apply border bg-white text-black rounded text-lg min-w-[210px] focus:outline-none focus:ring-2 focus:ring-white;
 }
 
 .btn-red {
@@ -54,42 +62,23 @@ html {
   scroll-behavior: smooth;
 }
 
+.btn-primary {
+  @apply bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600
+    text-white px-8 py-3 rounded-full font-semibold shadow-lg 
+    hover:scale-105 transition duration-300;
+}
+
+.primary-header {
+  @apply text-4xl md:text-6xl lg:text-[115px] uppercase font-black tracking-tighter;
+}
 
 
 .perspective-1000 {
   perspective: 1000px;
 }
 
-/* ✈️ Plane flying diagonally */
-@keyframes fly-across {
-  0% {
-    transform: translate(0, 0) rotate(0deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(100vw, -100vh) rotate(20deg);
-    opacity: 0;
-  }
-}
 
-.animate-float-bubble-1 {
-  animation: floatBubble 6s ease-in-out infinite;
-}
-.animate-float-bubble-2 {
-  animation: floatBubble 7s linear infinite;
-}
-.animate-float-bubble-3 {
-  animation: floatBubble 5s ease-in infinite;
-}
-.animate-float-bubble-4 {
-  animation: floatBubble 8s ease-out infinite;
-}
-@font-face {
-  font-family: 'Mystery Quest';
-  src: url('../src/assets/fonts/MysteryQuest-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
+
 
 
 

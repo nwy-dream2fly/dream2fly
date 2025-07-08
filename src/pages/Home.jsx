@@ -12,6 +12,7 @@ import Destinations from "./Destinations";
 import PopularPackages from "../components/PopularPackages";
 import AboutUs from "./AboutUs";
 import TourPlan from "./TourPlan";
+import Itineraries from "./Itineraries";
 
 // Optional: A fallback/placeholder video (e.g., a still background or loop)
 const placeholderVideo = tajmahalVideo;
@@ -55,6 +56,7 @@ const VideoSlider = () => {
 
   return (
     <>
+    
       <section className="w-screen h-screen relative overflow-hidden max-w-full">
         {/* Background video */}
         <video
@@ -71,11 +73,17 @@ const VideoSlider = () => {
         </video>
 
         {/* Dark overlay */}
+         <div
+                  className="absolute inset-0"
+                  style={{
+                    background: 'linear-gradient(to bottom, rgba(0,0,0,0.50) 10%, rgba(0,0,0,0) 100%)'
+                  }}
+                ></div>
        
 
         {/* Centered Content */}
         <div className="relative z-20 flex flex-col items-center justify-around h-full text-white text-center px-4">
-          <h1 className="text-5xl font-bold mb-6">
+          <h1 className="text-8xl font-bold mb-6">
             {categories[currentIndex].name}
           </h1>
 
@@ -147,12 +155,14 @@ const VideoSlider = () => {
           </div>
         </div>
       </section>
+      <Booking />
       <Destinations />
-      <PopularPackages />   
+      <PopularPackages />  
       <DestinationCarousel />
+      <Itineraries /> 
       <TourPlan />
       <AboutUs />
-      <Booking />
+      
     </>
   );
 };

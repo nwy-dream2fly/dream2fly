@@ -16,7 +16,7 @@ export default function MyProfile() {
 
   return (
     <div className="bg-white p-6 rounded shadow">
-      <h2 className="text-xl font-bold mb-4 text-orange-600">My Profile</h2>
+      <h2 className="text-xl font-bold mb-4 text-blue-600">My Profile</h2>
       {editing ? (
         <div className="space-y-3">
           <input

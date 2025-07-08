@@ -18,6 +18,8 @@ import ScrollToTop from "../components/Common/ScrollToTop";
 import FlightSearchPage from '../pages/FlightSearchPage'
 import AboutUs from '../pages/AboutUs'
 import TourPlan from "../pages/TourPlan";
+import TripDetails  from '../pages/TripDetails'
+import AboutUsDetails from "../pages/AboutUsDetails";
 
 const AppRoutes = () => {
   return (
@@ -38,6 +40,8 @@ const AppRoutes = () => {
           <Route path="/auth" element={<AuthModal />} />
           <Route path="/destinations" element={<Destinations />} />
           <Route path="/destinations/:slug" element={<DestinationDetails />} />
+          <Route path="/about" element={<AboutUsDetails />}/>
+          <Route path="/trip/:name" element={<TripDetails />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/flights" element={<Flights />} />
           <Route path="/hotels" element={<Hotels />} />

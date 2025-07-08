@@ -53,12 +53,13 @@ const DestinationCarousel = () => {
 
   return (
     <div
-      className="w-full mx-auto py-16 px-4 relative overflow-visible justify-center bg-cover bg-center z-0 "
+      className="relative top-[10%] left-1/2 transform -translate-x-1/2 text-center w-full"
       style={{ backgroundImage: `url(${bgImage})` }}
     >
-      <h2 className=" sm:text-2xl md:text-6xl font-bold text-center mb-10 sm:mb-14 text-3xl text-teal-500 font-mystery">
-        Popular Destination
+      <h2 className="text-yellow-500 primary-header">
+        Best Travel Spots
       </h2>
+      <p className="text-yellow-500 text-2xl font-medium mb-16">Top Destinations Loved by Travelers</p>
 
       {isClient && (
         <div className="relative w-full max-w-[1500px] h-[420px] sm:h-[500px] md:h-[580px] lg:h-[630px] xl:h-[680px] flex justify-center items-center perspective-[1000px] mx-auto">
@@ -66,7 +67,7 @@ const DestinationCarousel = () => {
             const offset = item.offset;
             const abs = Math.abs(offset);
             const zIndex = 100 - abs;
-            const translateX = offset * 290;
+            const translateX = offset * 250;
             const scale = offset === 0 ? 1 : abs === 1 ? 0.9 : 0.8;
             const translateZ = abs === 2 ? -60 : abs === 1 ? -40 : 0;
             const blur = offset === 0 ? "blur-0" : "blur-[3.5px]";
@@ -128,7 +129,7 @@ const DestinationCarousel = () => {
       )}
 
       {/* Navigation Buttons */}
-         <div className="mt-2 flex justify-center gap-8">
+         <div className="mt-2 flex justify-center gap-8 pb-16">
           <button
             onClick={goPrev}
             className="bg-red-500 hover:bg-red-600 text-white font-semibold px-6 py-2 rounded-full shadow-md transition"

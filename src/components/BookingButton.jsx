@@ -13,9 +13,9 @@ const BookingButton = () => {
   return (
     <button
       onClick={handleClick}
-      className="fixed right-4 bottom-20 bg-red-600 text-white px-4 py-2 rounded shadow-md hover:bg-red-700 transition z-50"
+      className="fixed right-[-3rem] top-1/2 bg-red-500 text-white px-4 py-2 rounded shadow-md hover:bg-red-700 transition z-50 transform -rotate-90"
     >
-      Book Your Travel
+      Plan Your Journey
     </button>
   );
 };

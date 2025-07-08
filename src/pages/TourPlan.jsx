@@ -1,39 +1,25 @@
 import React from "react";
-import { Map, Users } from "lucide-react";
+import { Map, Sparkles , CalendarClock,MountainSnow  } from "lucide-react";
 import bgImage from "../assets/images/background.jpg";
 
 import img1 from "../assets/images/tourplan.png";
 import img2 from "../assets/images/touristsSelfy.jpg";
 import img3 from "../assets/images/touristsGang.jpg";
-import traveler from "../assets/images/about-slide-img.png";
 import balloon1 from "../assets/images/shape_2.png";
-import balloon2 from "../assets/images/shape_4.png";
+
 
 const TourPlan = () => {
   return (
     <section
-      className="relative min-h-screen flex items-center bg-cover bg-center px-6 py-3"
+      className="relative min-h-screen flex items-center bg-cover bg-center px-6 py-16 overflow-hidden "
       style={{ backgroundImage: `url(${bgImage})` }}
     >
       {/* Floating Balloons */}
       <img
         src={balloon1}
         alt="balloon"
-        className="absolute left-[100px] top-30 w-8 md:w-12 animate-float"
-      />
-      <img
-        src={balloon2}
-        alt="balloon"
-        className="absolute left-12 top-28 w-6 md:w-10 animate-float-slow"
-      />
-
-      {/* Floating Traveler */}
-      <img
-        src={traveler}
-        alt="Traveler Illustration"
-        className="absolute bottom-2 right-0 w-32 md:w-44 animate-move-left"
-        style={{ animation: "moveLeft 6s infinite alternate ease-in-out" }}
-      />
+        className="absolute right-[200px] top-10 w-8 md:w-12 animate-float"
+      />    
 
       <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
         {/* Left - Images */}
@@ -57,11 +43,11 @@ const TourPlan = () => {
 
         {/* Right - Content */}
         <div className="text-left">
-          <p className="text-3xl text-teal-600 font-mystery mb-2">Let’s Go Together</p>
-          <h2 className="text-5xl md:text-5xl font-bold text-gray-800 mb-6 leading-tight">
+          <p className="text-6xl text-teal-600 mb-5 font-extrabold">Let’s Go Together</p>
+          <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 mb-6 leading-tight">
             Plan Your Trip <br /> With Us
           </h2>
-          <p className="text-gray-600 mb-8 text-xl">
+          <p className="text-gray-600 mb-8 text-lg">
             Explore unforgettable destinations with tailored experiences.
             Discover, learn, and grow as you travel with top-notch guides and
             premium services.
@@ -74,8 +60,8 @@ const TourPlan = () => {
                 <Map size={20} />
               </span>
               <div>
-                <h4 className="text-xl font-semibold">Exclusive Trip</h4>
-                <p className="text-xl text-gray-600">
+                <h4 className="text-lg font-bold">Exclusive Trip</h4>
+                <p className="text-lg text-gray-600">
                   Tailored experiences crafted for true explorers.
                 </p>
               </div>
@@ -83,21 +69,47 @@ const TourPlan = () => {
 
             <div className="flex items-start gap-4">
               <span className="bg-teal-500 text-white p-3 rounded-full">
-                <Users size={20} />
+                <Sparkles size={20} />
               </span>
               <div>
-                <h4 className="text-xl font-semibold">Professional Guide</h4>
-                <p className="text-xl text-gray-600">
-                  Our team ensures safe and insightful travel everywhere.
+                <h4 className="text-lg font-bold">Memorable Moments</h4>
+                <p className="text-lg text-gray-600">
+                  We craft every journey with special touches and unforgettable experiences you'll cherish for a lifetime.
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4">
+              <span className="bg-teal-500 text-white p-3 rounded-full">
+                <CalendarClock size={20} />
+              </span>
+              <div>
+                <h4 className="text-lg font-bold">Seamless Planning</h4>
+                <p className="text-lg text-gray-600">
+                  Enjoy stress-free journeys with our end-to-end travel management.
+                </p>
+              </div>
+            </div>
+             <div className="flex items-start gap-4">
+              <span className="bg-teal-500 text-white p-3 rounded-full">
+                <MountainSnow size={20} />
+              </span>
+              <div>
+                <h4 className="text-lg font-bold">Authentic Adventures</h4>
+                <p className="text-lg text-gray-600">
+                  Discover hidden gems and unforgettable moments off the beaten path.
                 </p>
               </div>
             </div>
           </div>
 
-          <button className="mt-10 px-6 py-3 bg-teal-600 hover:bg-teal-700 text-white rounded-full flex items-center gap-2 transition-all">
+          <div className="flex justify-center">
+            <button className="btn-primary mt-8">
             Learn More →
           </button>
+          </div>
+            
         </div>
+      
       </div>
 
       {/* Floating animation styles */}
@@ -115,10 +127,11 @@ const TourPlan = () => {
           }
           @keyframes float {
             from { transform: translateY(0); }
-            to { transform: translateY(-20px); }
+            to { transform: translateY(-40px); }
           }
         `}
       </style>
+
     </section>
   );
 };
