@@ -23,7 +23,7 @@ const Booking = () => {
  return (
   <div
     id="booking"
-    className="relative min-h-screen flex justify-center items-center bg-cover bg-center py-14 px-4"
+    className="relative min-h-screen flex justify-center items-center bg-cover bg-center py-10 px-4"
     style={{
       backgroundImage: `url(${flightImg})`,
       backgroundSize: "cover",

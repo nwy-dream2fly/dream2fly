@@ -22,23 +22,27 @@ const TourPlan = () => {
 
       <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-16 items-center max-w-7xl mx-auto">
         {/* Left Images */}
-        <div className="grid grid-cols-2 gap-3 sm:gap-4">
-          <img
-            src={img1}
-            alt="Explorer"
-            className="col-span-2 w-full h-[400px] sm:h-[500px] md:h-[650px] object-cover rounded-2xl sm:rounded-3xl"
-          />
-          <img
-            src={img2}
-            alt="Adventure"
-            className="w-full h-[120px] sm:h-[180px] md:h-[200px] object-cover rounded-lg shadow-md"
-          />
-          <img
-            src={img3}
-            alt="Travelers"
-            className="w-full h-[120px] sm:h-[180px] md:h-[200px] object-cover rounded-lg shadow-md"
-          />
-        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+  {/* Hidden on mobile */}
+  <img
+    src={img1}
+    alt="Explorer"
+    className="hidden sm:block col-span-2 w-full h-[500px] md:h-[650px] object-cover rounded-2xl sm:rounded-3xl"
+  />
+
+  {/* Visible and stacked one-by-one in mobile */}
+  <img
+    src={img2}
+    alt="Adventure"
+    className="w-full h-[180px] object-cover rounded-lg shadow-md"
+  />
+  <img
+    src={img3}
+    alt="Travelers"
+    className="w-full h-[180px] object-cover rounded-lg shadow-md"
+  />
+</div>
+
 
         {/* Right Content */}
         <div className="text-left">
@@ -56,11 +60,27 @@ const TourPlan = () => {
 
           {/* Features */}
           <div className="space-y-5 sm:space-y-6">
-            {[ 
-              { icon: <Map size={20} />, title: "Exclusive Trip", desc: "Tailored experiences crafted for true explorers." },
-              { icon: <Sparkles size={20} />, title: "Memorable Moments", desc: "We craft every journey with special touches and unforgettable experiences you'll cherish for a lifetime." },
-              { icon: <CalendarClock size={20} />, title: "Seamless Planning", desc: "Enjoy stress-free journeys with our end-to-end travel management." },
-              { icon: <MountainSnow size={20} />, title: "Authentic Adventures", desc: "Discover hidden gems and unforgettable moments off the beaten path." }
+            {[
+              {
+                icon: <Map size={20} />,
+                title: "Exclusive Trip",
+                desc: "Tailored experiences crafted for true explorers.",
+              },
+              {
+                icon: <Sparkles size={20} />,
+                title: "Memorable Moments",
+                desc: "We craft every journey with special touches and unforgettable experiences you'll cherish for a lifetime.",
+              },
+              {
+                icon: <CalendarClock size={20} />,
+                title: "Seamless Planning",
+                desc: "Enjoy stress-free journeys with our end-to-end travel management.",
+              },
+              {
+                icon: <MountainSnow size={20} />,
+                title: "Authentic Adventures",
+                desc: "Discover hidden gems and unforgettable moments off the beaten path.",
+              },
             ].map(({ icon, title, desc }, index) => (
               <div className="flex items-start gap-3 sm:gap-4" key={index}>
                 <span className="bg-teal-500 text-white p-2 sm:p-3 rounded-full">
