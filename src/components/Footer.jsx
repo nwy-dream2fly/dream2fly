@@ -119,12 +119,12 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="/services" className="hover:underline">
+                <a href="/destinations" className="hover:underline">
                   › Our Service
                 </a>
               </li>
               <li>
-                <a href="/terms" className="hover:underline">
+                <a href="/home" className="hover:underline">
                   › Terms of Service
                 </a>
               </li>

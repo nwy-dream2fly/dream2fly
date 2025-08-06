@@ -157,9 +157,9 @@ const Header = () => {
               />
             </button>
 
-            <Link to="/experiences" className="hover:text-red-300 transition">Experiences</Link>
-            <Link to="/plan" className="hover:text-red-300 transition">Plan Your Trip</Link>
-            <Link to="/businesstrip" className="hover:text-red-300 transition">Business Trip</Link>
+            <Link to="/home" className="hover:text-red-300 transition">Experiences</Link>
+            <Link to="/home" className="hover:text-red-300 transition">Plan Your Trip</Link>
+            <Link to="/home" className="hover:text-red-300 transition">Corporate Trip</Link>
           </div>
 
           {/* Right: Search & User */}

@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
-import tajmahalVideo from "../assets/videos/hist.mp4";
-import Spiritual from "../assets/videos/kashi.mp4";
-import nature from "../assets/videos/nature.mp4";
-import adventure from "../assets/videos/adventure.mp4";
+import Historicalvideo from "../assets/videos/historical.mp4";
+import Spiritualvideo from "../assets/videos/Spiritual.mp4";
+import naturevideo from "../assets/videos/nature.mp4";
+import adventurevideo from "../assets/videos/adventure.mp4";
+import culturalvideo from "../assets/videos/nature.mp4";
+import luxuryvideo from "../assets/videos/luxury.mp4";
+import wildlifevideo from "../assets/videos/wildlife.mp4";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -14,17 +17,17 @@ import AboutUs from "./AboutUs";
 import TourPlan from "./TourPlan";
 import Itineraries from "./Itineraries";
 
-// Optional: A fallback/placeholder video (e.g., a still background or loop)
-const placeholderVideo = tajmahalVideo;
+
+
 
 const categories = [
-  { name: "Historical", videoSrc: tajmahalVideo },
-  { name: "Spiritual", videoSrc: Spiritual },
-  { name: "Nature", videoSrc: nature },
-  { name: "Adventure", videoSrc: adventure },
-  { name: "Cultural", videoSrc: placeholderVideo },
-  { name: "Luxury", videoSrc: placeholderVideo },
-  { name: "Wildlife", videoSrc: placeholderVideo },
+  { name: "Historical", videoSrc: Historicalvideo },
+  { name: "Spiritual", videoSrc: Spiritualvideo },
+  { name: "Nature", videoSrc: naturevideo },
+  { name: "Adventure", videoSrc: adventurevideo },
+  { name: "Cultural", videoSrc: culturalvideo },
+  { name: "Luxury", videoSrc: luxuryvideo },
+  { name: "Wildlife", videoSrc: wildlifevideo },
 ];
 
 // Sample city images (you should replace with real image imports)
