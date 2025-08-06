@@ -19,10 +19,11 @@ const FlightForm = () => {
     departureDate: new Date(),
     returnDate: "",
     passengers: 1,
-    travelClass: "economy",  // <-- Default to Economy here
+    travelClass: "economy",
     directFlight: false,
     adults: 1,
     children: 0,
+     infants: 0,
   });
 
   const [flights, setFlights] = useState([]);
@@ -68,72 +69,67 @@ const FlightForm = () => {
   };
 
   return (
-    <div className="text-white px-4 sm:px-4 md:px-6 lg:px-8 py-6">
+    <div className="text-white px-4 py-6 space-y-4">
       <TripTypeToggle
         tripType={tripType}
         setTripType={setTripType}
         setFlightForm={setFlightForm}
       />
 
-      <div className="flex flex-col md:flex-row flex-wrap md:justify-center gap-2 md:gap-2 my-6">
-        <div className="flex flex-col md:flex-row relative gap-2 justify-center">
-          <div className="relative w-full md:w-[210px]">
-            <input
-              type="text"
-              name="from"
-              value={flightForm.from}
-              onChange={handleFlightChange}
-              className="peer w-full px-6 pt-5 pb-2 text-lg font-bold rounded-md text-black focus:outline-none focus:border-red-500 bg-white"
-              placeholder="Origin"
-            />
-            <label className="absolute left-3 top-1 text-sm text-gray-500 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-gray-400 peer-focus:top-1 peer-focus:text-red-500">
-              From
-            </label>
-          </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="relative">
+          <input
+            type="text"
+            name="from"
+            value={flightForm.from}
+            onChange={handleFlightChange}
+            className="peer w-full px-6 pt-5 pb-2 text-lg font-bold rounded-md text-black focus:outline-none focus:border-red-500 bg-white"
+            placeholder="Origin"
+          />
+          <label className="absolute left-3 top-1 text-sm text-gray-500 peer-placeholder-shown:top-2 peer-placeholder-shown:text-gray-400 peer-focus:top-1 peer-focus:text-red-500">
+            From
+          </label>
+        </div>
 
-          <div className="relative w-full md:w-[210px]">
-            <input
-              type="text"
-              name="to"
-              value={flightForm.to}
-              onChange={handleFlightChange}
-              className="peer w-full px-6 pt-5 pb-2 text-lg font-bold rounded-md text-black focus:outline-none focus:border-red-500 bg-white"
-              placeholder="Destination"
-            />
-            <label className="absolute left-3 top-1 text-sm text-gray-500 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-gray-400 peer-focus:top-1 peer-focus:text-red-500">
-              To
-            </label>
-          </div>
-
+        <div className="relative">
+          <input
+            type="text"
+            name="to"
+            value={flightForm.to}
+            onChange={handleFlightChange}
+            className="peer w-full px-6 pt-5 pb-2 text-lg font-bold rounded-md text-black focus:outline-none focus:border-red-500 bg-white"
+            placeholder="Destination"
+          />
+          <label className="absolute left-3 top-1 text-sm text-gray-500 peer-placeholder-shown:top-2 peer-placeholder-shown:text-gray-400 peer-focus:top-1 peer-focus:text-red-500">
+            To
+          </label>
           <button
             type="button"
             onClick={handleSwapLocations}
-            className="w-[40px] absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 right-3 top-1/2 transform -translate-y-1/2 z-10 p-2 rounded-full bg-white border border-red-300 shadow hover:bg-gray-100 transition md:block hidden"
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 z-10 p-2 rounded-full bg-white border border-red-300 shadow hover:bg-gray-100"
             title="Swap From and To"
           >
             <HiMiniArrowsRightLeft className="text-xl text-red-700" />
           </button>
         </div>
 
-        <div className="relative w-full md:w-[210px]">
+        <div className="relative">
           <DatePicker
             selected={flightForm.departureDate}
             onChange={(date) =>
               setFlightForm((prev) => ({ ...prev, departureDate: date }))
             }
-            className="peer w-full px-6 pt-5 pb-2 text-lg font-bold rounded-md text-black focus:outline-none bg-white"
+            className="peer w-full px-6 pt-5 pb-2 text-lg font-bold rounded-md text-black bg-white"
             placeholderText=""
           />
-          <label className="absolute left-3 top-1 text-sm text-gray-500 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-gray-400 peer-focus:top-1 peer-focus:text-red-500">
+          <label className="absolute left-3 top-1 text-sm text-gray-500 peer-placeholder-shown:top-2 peer-placeholder-shown:text-gray-400 peer-focus:top-1 peer-focus:text-red-500">
             Departure Date
           </label>
         </div>
 
-        <div className="relative w-full md:w-[210px]">
+        <div className="relative">
           <DatePicker
-            selected={
-              flightForm.returnDate ? new Date(flightForm.returnDate) : null
-            }
+            selected={flightForm.returnDate ? new Date(flightForm.returnDate) : null}
             onChange={(date) =>
               setFlightForm((prev) => ({
                 ...prev,
@@ -142,11 +138,9 @@ const FlightForm = () => {
             }
             placeholderText=" "
             disabled={tripType === "single"}
-            className={`peer w-full px-6 pt-5 pb-2 text-lg font-bold rounded-md text-black focus:outline-none bg-white ${
-              tripType === "single" ? "opacity-50 cursor-not-allowed" : ""
-            }`}
+            className={`peer w-full px-6 pt-5 pb-2 text-lg font-bold rounded-md text-black bg-white ${tripType === "single" ? "opacity-50 cursor-not-allowed" : ""}`}
           />
-          <label className="absolute left-3 top-1 text-sm text-gray-500 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-gray-400 peer-focus:top-1 peer-focus:text-red-500">
+          <label className="absolute left-3 top-1 text-sm text-gray-500 peer-placeholder-shown:top-2 peer-placeholder-shown:text-gray-400 peer-focus:top-1 peer-focus:text-red-500">
             Return Date
           </label>
         </div>
@@ -158,12 +152,12 @@ const FlightForm = () => {
           setShow={setShowPersonDropdown}
         />
 
-        <div className="relative w-full md:w-[210px]">
+        <div className="relative">
           <select
             name="travelClass"
             value={flightForm.travelClass}
             onChange={handleFlightChange}
-            className="peer w-full appearance-none px-6 py-3 text-lg font-bold rounded-md text-black bg-white border border-gray-300 focus:outline-none"
+            className="peer w-full appearance-none px-6 py-3 text-lg font-bold rounded-md text-black bg-white border border-gray-300"
           >
             <option value="economy">Economy</option>
             <option value="premiumEconomy">Premium Economy</option>
@@ -174,7 +168,7 @@ const FlightForm = () => {
         </div>
       </div>
 
-      <div className="flex justify-center items-center gap-3 text-lg font-bold text-white mb-6">
+      <div className="flex justify-center items-center gap-3 text-lg font-bold text-white mt-4">
         <input
           type="checkbox"
           checked={flightForm.directFlight}
@@ -186,11 +180,11 @@ const FlightForm = () => {
         Direct Flights Only
       </div>
 
-      <div className="flex justify-center">
+      <div className="flex justify-center mt-6">
         <button
           onClick={searchFlights}
           disabled={loadingFlights}
-          className="py-3 btn-primary"
+          className="py-3 btn-primary w-full sm:w-auto"
         >
           {loadingFlights ? "Searching..." : "Search Flights"}
         </button>

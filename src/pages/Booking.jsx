@@ -23,7 +23,7 @@ const Booking = () => {
  return (
   <div
     id="booking"
-    className="relative min-h-screen flex justify-center items-center bg-cover bg-center py-10 px-4"
+    className="relative min-h-screen flex justify-center items-center bg-cover bg-center py-14 px-4"
     style={{
       backgroundImage: `url(${flightImg})`,
       backgroundSize: "cover",
@@ -37,7 +37,7 @@ const Booking = () => {
     {/* Content with higher z-index */}
     <div className="relative z-10 w-full mx-auto p-4 sm:p-6 md:p-8 rounded-xl">
       {/* Heading */}
-      <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[75px] text-white font-extrabold mb-6 sm:mb-8 text-center leading-tight">
+      <h1 className="text-2xl sm:text-5xl md:text-6xl lg:text-[75px] text-white font-extrabold mb-6 sm:mb-8 text-center leading-tight">
         Book Your Dream {activeTab === "flights" ? "Flight" : "Hotel"} Today
       </h1>
 

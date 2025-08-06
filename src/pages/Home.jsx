@@ -17,9 +17,6 @@ import AboutUs from "./AboutUs";
 import TourPlan from "./TourPlan";
 import Itineraries from "./Itineraries";
 
-
-
-
 const categories = [
   { name: "Historical", videoSrc: Historicalvideo },
   { name: "Spiritual", videoSrc: Spiritualvideo },
@@ -30,8 +27,6 @@ const categories = [
   { name: "Wildlife", videoSrc: wildlifevideo },
 ];
 
-// Sample city images (you should replace with real image imports)
-
 const VideoSlider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -40,9 +35,7 @@ const VideoSlider = () => {
   };
 
   const prevVideo = () => {
-    setCurrentIndex(
-      (prev) => (prev - 1 + categories.length) % categories.length
-    );
+    setCurrentIndex((prev) => (prev - 1 + categories.length) % categories.length);
   };
 
   const handleVideoEnd = () => {
@@ -50,7 +43,6 @@ const VideoSlider = () => {
   };
 
   useEffect(() => {
-    // Preload next video
     const nextIndex = (currentIndex + 1) % categories.length;
     const video = document.createElement("video");
     video.src = categories[nextIndex].videoSrc;
@@ -59,7 +51,6 @@ const VideoSlider = () => {
 
   return (
     <>
-    
       <section className="w-screen h-screen relative overflow-hidden max-w-full">
         {/* Background video */}
         <video
@@ -76,77 +67,60 @@ const VideoSlider = () => {
         </video>
 
         {/* Dark overlay */}
-         <div
-                  className="absolute inset-0"
-                  style={{
-                    background: 'linear-gradient(to bottom, rgba(0,0,0,0.50) 10%, rgba(0,0,0,0) 100%)'
-                  }}
-                ></div>
-       
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "linear-gradient(to bottom, rgba(0,0,0,0.6) 20%, rgba(0,0,0,0) 100%)",
+          }}
+        ></div>
 
         {/* Centered Content */}
         <div className="relative z-20 flex flex-col items-center justify-around h-full text-white text-center px-4">
-          <h1 className="text-8xl font-bold mb-6">
+          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-4 sm:mb-6">
             {categories[currentIndex].name}
           </h1>
 
           {/* Prev / Next Buttons */}
-          <div className="flex space-x-4 mb-6">
+          <div className="flex space-x-4 mb-4 sm:mb-6">
             <button
               onClick={prevVideo}
-              className="bg-white bg-opacity-30 top-1/2 left-4 absolute hover:bg-red-500 px-5 py-2 rounded-full font-semibold transition"
+              className="bg-white bg-opacity-30 absolute top-1/2 left-2 sm:left-4 hover:bg-red-500 px-3 sm:px-5 py-2 rounded-full font-semibold transition"
               aria-label="Previous Video"
             >
               <svg
-                className="w-[32px] h-[32px] text-gray-800 dark:text-white"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
+                className="w-6 sm:w-8 h-6 sm:h-8 text-white"
                 fill="none"
+                stroke="currentColor"
+                strokeWidth="2.4"
                 viewBox="0 0 24 24"
               >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2.4"
-                  d="m15 19-7-7 7-7"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
               </svg>
             </button>
             <button
               onClick={nextVideo}
-              className="absolute top-1/2 right-4 bg-white bg-opacity-30 hover:bg-red-500 px-5 py-2 rounded-full font-semibold transition"
+              className="bg-white bg-opacity-30 absolute top-1/2 right-2 sm:right-4 hover:bg-red-500 px-3 sm:px-5 py-2 rounded-full font-semibold transition"
               aria-label="Next Video"
             >
               <svg
-                className="w-[32px] h-[32px] text-gray-800 dark:text-white"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
+                className="w-6 sm:w-8 h-6 sm:h-8 text-white"
                 fill="none"
+                stroke="currentColor"
+                strokeWidth="2.4"
                 viewBox="0 0 24 24"
               >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2.4"
-                  d="m9 5 7 7-7 7"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
               </svg>
             </button>
           </div>
 
-          {/* Category Selection Buttons */}
-          <div className="flex flex-wrap justify-center gap-3">
+          {/* Category Buttons */}
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 px-2 sm:px-0">
             {categories.map((cat, index) => (
               <button
                 key={cat.name}
                 onClick={() => setCurrentIndex(index)}
-                className={`px-4 py-2 rounded-full font-semibold transition ${
+                className={`text-sm sm:text-base px-3 sm:px-4 py-1.5 sm:py-2 rounded-full font-semibold transition ${
                   index === currentIndex
                     ? "bg-red-500 text-white"
                     : "bg-white bg-opacity-30 text-white hover:bg-red-500 hover:text-white"
@@ -158,14 +132,15 @@ const VideoSlider = () => {
           </div>
         </div>
       </section>
+
+      {/* Other sections */}
       <Booking />
       <Destinations />
-      <PopularPackages />  
+      <PopularPackages />
       <DestinationCarousel />
-      <Itineraries /> 
+      <Itineraries />
       <TourPlan />
       <AboutUs />
-      
     </>
   );
 };
